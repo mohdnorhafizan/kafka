@@ -6,13 +6,13 @@ producer = KafkaProducer(
     value_serializer=lambda v: json.dumps(v).encode("utf-8")
 )
 
-message = {
-    "id": 2,
-    "name": "Hafizan",
-    "message": "Nice its working!"
-}
+with open("data/test.json", "r") as file:
+    messages = json.load(file)
 
-producer.send("operation-log", value=message)
-producer.flush()
+for message in messages:
+    print("Sending message:", message)
 
-print("Message sent")
+    producer.send("operation-log", value=message)
+    producer.flush()
+
+    print("Message sent")
