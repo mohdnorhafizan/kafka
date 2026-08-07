@@ -2,3 +2,4 @@
 venv
 *.log
 *.pyc
+postgres_data/
